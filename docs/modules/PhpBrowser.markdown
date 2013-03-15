@@ -1,4 +1,9 @@
-# PhpBrowser Module
+---
+layout: doc
+title: Codeception - Documentation
+---
+
+## PhpBrowser Module
 
 Uses Mink (http://mink.behat.org) with Goutte Driver to interact with your application.
 Contains all Mink actions and additional ones, listed below.
@@ -7,19 +12,19 @@ Use to perform web acceptance tests with non-javascript browser.
 
 If test fails stores last shown page in 'output' dir.
 
-## Configuration
+### Configuration
 
 * url *required* - start url of your app
 
-## Public Properties
+### Public Properties
 
 * session - contains Mink Session
 
 
-## Actions
+### Actions
 
 
-### amOnPage
+#### amOnPage
 
 
 Opens the page.
@@ -27,7 +32,7 @@ Opens the page.
  * param $page
 
 
-### attachFile
+#### attachFile
 
 
 Attaches file stored in Codeception data directory to field specified.
@@ -37,7 +42,7 @@ Field is searched by its id|name|label|value or CSS selector.
  * param $filename
 
 
-### checkOption
+#### checkOption
 
 
 Check matched checkbox or radiobutton.
@@ -46,7 +51,7 @@ Field is searched by its id|name|label|value or CSS selector.
  * param $option
 
 
-### click
+#### click
 
 
 Clicks on either link or button (for PHPBrowser) or on any selector for JS browsers.
@@ -55,7 +60,7 @@ Link text or css selector can be passed.
  * param $link
 
 
-### dontSee
+#### dontSee
 
 
 Check if current page doesn't contain the text specified.
@@ -63,18 +68,20 @@ Specify the css selector to match only specific region.
 
 Examples:
 
-```php
+{% highlight php %}
+
 <?php
 $I->dontSee('Login'); // I can suppose user is already logged in
 $I->dontSee('Sign Up','h1'); // I can suppose it's not a signup page
 
-```
+
+{% endhighlight %}
 
  * param $text
  * param null $selector
 
 
-### dontSeeCheckboxIsChecked
+#### dontSeeCheckboxIsChecked
 
 
 Asserts that checbox is not checked
@@ -83,7 +90,7 @@ Field is searched by its id|name|label|value or CSS selector.
  * param $checkbox
 
 
-### dontSeeInField
+#### dontSeeInField
 
 
 Checks the value in field is not equal to value passed.
@@ -93,7 +100,7 @@ Field is searched by its id|name|label|value or CSS selector.
  * param $value
 
 
-### dontSeeLink
+#### dontSeeLink
 
 
 Checks if the document hasn't link that contains specified
@@ -104,7 +111,7 @@ text (or text and url)
  * return mixed
 
 
-### fillField
+#### fillField
 
 
 Fill the field with given value.
@@ -114,25 +121,25 @@ Field is searched by its id|name|label|value or CSS selector.
  * param $value
 
 
-### moveBack
+#### moveBack
 
 
 Moves back in history
 
 
-### moveForward
+#### moveForward
 
 
 Moves forward in history
 
 
-### reloadPage
+#### reloadPage
 
 
 Reloads current page
 
 
-### see
+#### see
 
 
 Check if current page contains the text specified.
@@ -140,18 +147,20 @@ Specify the css selector to match only specific region.
 
 Examples:
 
-``` php
+{% highlight php %}
+
 <?php
 $I->see('Logout'); // I can suppose user is logged in
 $I->see('Sign Up','h1'); // I can suppose it's a signup page
 
-```
+
+{% endhighlight %}
 
  * param $text
  * param null $selector
 
 
-### seeCheckboxIsChecked
+#### seeCheckboxIsChecked
 
 
 Asserts the checkbox is checked.
@@ -160,7 +169,7 @@ Field is searched by its id|name|label|value or CSS selector.
  * param $checkbox
 
 
-### seeInCurrentUrl
+#### seeInCurrentUrl
 
 
 Checks if current url contains the $uri.
@@ -168,7 +177,7 @@ Checks if current url contains the $uri.
  * param $uri
 
 
-### seeInField
+#### seeInField
 
 
 Checks the value of field is equal to value passed.
@@ -177,7 +186,7 @@ Checks the value of field is equal to value passed.
  * param $value
 
 
-### seeLink
+#### seeLink
 
 
 Checks if the document has link that contains specified
@@ -188,7 +197,7 @@ text (or text and url)
  * return mixed
 
 
-### selectOption
+#### selectOption
 
 
 Selects opition from selectbox.
@@ -199,7 +208,7 @@ Either values or text of options can be used to fetch option.
  * param $option
 
 
-### sendAjaxGetRequest
+#### sendAjaxGetRequest
 
 
 If your page triggers an ajax request, you can perform it manually.
@@ -211,7 +220,7 @@ See ->sendAjaxPostRequest for examples.
  * param $params
 
 
-### sendAjaxPostRequest
+#### sendAjaxPostRequest
 
 
 If your page triggers an ajax request, you can perform it manually.
@@ -223,18 +232,20 @@ Example:
 Imagine that by clicking checkbox you trigger ajax request which updates user settings.
 We emulate that click by running this ajax request manually.
 
-``` php
+{% highlight php %}
+
 <?php
 $I->sendAjaxPostRequest('/updateSettings', array('notifications' => true); // POST
 $I->sendAjaxGetRequest('/updateSettings', array('notifications' => true); // GET
 
-```
+
+{% endhighlight %}
 
  * param $uri
  * param $params
 
 
-### submitForm
+#### submitForm
 
 
 Submits a form located on page.
@@ -247,15 +258,18 @@ This command itself triggers the request to form's action.
 
 Examples:
 
-``` php
+{% highlight php %}
+
 <?php
 $I->submitForm('#login', array('login' => 'davert', 'password' => '123456'));
 
-```
+
+{% endhighlight %}
 
 For sample Sign Up form:
 
-``` html
+{% highlight html %}
+
 <form action="/sign_up">
     Login: <input type="text" name="user[login]" /><br/>
     Password: <input type="password" name="user[password]" /><br/>
@@ -263,21 +277,24 @@ For sample Sign Up form:
     Select pricing plan <select name="plan"><option value="1">Free</option><option value="2" selected="selected">Paid</option></select>
     <input type="submit" value="Submit" />
 </form>
-```
+
+{% endhighlight %}
 I can write this:
 
-``` php
+{% highlight php %}
+
 <?php
 $I->submitForm('#userForm', array('user' => array('login' => 'Davert', 'password' => '123456', 'agree' => true)));
 
-```
+
+{% endhighlight %}
 Note, that pricing plan will be set to Paid, as it's selected on page.
 
  * param $selector
  * param $params
 
 
-### uncheckOption
+#### uncheckOption
 
 
 Uncheck matched checkbox or radiobutton.
